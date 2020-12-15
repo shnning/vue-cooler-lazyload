@@ -1,1 +1,1 @@
-export { lazyloadPlugin } from './install';
+export { lazyloadPlugin as default } from './install';
