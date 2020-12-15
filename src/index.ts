@@ -1,0 +1,1 @@
+export { lazyloadPlugin } from './install';
