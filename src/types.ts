@@ -13,8 +13,8 @@ export interface LazyloadOptions {
 }
 
 export interface IntersectionObserverConfig {
-  rootMargin?: string;
-  threshold?: number;
+  rootMargin: string;
+  threshold: number;
 }
 
 export interface LazyloadCallback {

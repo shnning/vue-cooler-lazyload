@@ -1,6 +1,6 @@
 import { VNodeDirective } from 'vue';
 import { LazyloadOptions, IntersectionObserverConfig, LazyloadCallback } from './types';
-import { loadImage, isHTMLImageElement } from './utils';
+import { loadImage, isHTMLImageElement, isIntersecting } from './utils';
 
 export default class Lazyload {
   observer!: IntersectionObserver;
@@ -44,7 +44,7 @@ export default class Lazyload {
     this.observer = new IntersectionObserver(
       (entries: IntersectionObserverEntry[], self: IntersectionObserver) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting || entry.intersectionRatio === 1) {
+          if (isIntersecting(entry)) {
             this.load(entry.target as HTMLElement);
             self.unobserve(entry.target);
           }
