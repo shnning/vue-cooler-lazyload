@@ -22,3 +22,9 @@ export function loadImage(src: string) {
 }
 
 export const isHTMLImageElement = (el: HTMLElement): boolean => el.tagName.toLocaleUpperCase() === 'IMG';
+
+export const isIntersecting = (el: IntersectionObserverEntry): boolean => {
+  // some browsers don't have isIntersecting in IntersectionObserverEntry
+  // https://github.com/w3c/IntersectionObserver/issues/211
+  return el.isIntersecting || el.intersectionRatio > 0;
+}
