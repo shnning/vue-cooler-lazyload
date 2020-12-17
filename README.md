@@ -6,6 +6,10 @@ A vue plugin which support lazyload image and background-image. Here are the adv
 - offer hooks which We could use before and after image loaded
 
 ## Demo
+```bash
+npm install
+npm run dev
+```
 
 ## Requirements
 - Vue 2.x
@@ -40,7 +44,7 @@ if v-lazyload directive is used in div Element, image would be background-image 
 ## Plugin Options
 |key|description|default|options|
 |---|-----------|-------|-------|
-|border|the viewport you want to listen|'0px'(window)|{top, bottom, left, right}|
+|border|the viewport you want to listen|{top: 0, bottom: 0, left: 0, right: 0}(window)|{top, bottom, left, right}|
 |threshold|the proportion of element insert into viewport|0(0 means that when a element go into the viewport, image begins load)|0~1|
 |beforeLoad|function that would be excuted when dom loaded|null|Function(el: HTMLElement): void|
 |afterLoad|function that would be excuted when image loaded|null|Function(el: HTMLElement): void|
