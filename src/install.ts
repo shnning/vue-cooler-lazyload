@@ -10,6 +10,9 @@ export const lazyloadPlugin: PluginObject<LazyloadOptions> = {
       bind(el: HTMLElement, binding: VNodeDirective) {
         $lazyload.add(el, binding);
       },
+      update(el: HTMLElement, binding: VNodeDirective) {
+        $lazyload.add(el, binding);
+      }
     });
   },
 };
