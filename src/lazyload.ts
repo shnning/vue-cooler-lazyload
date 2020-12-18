@@ -4,12 +4,16 @@ import { loadImage, isHTMLImageElement, isIntersecting } from './utils';
 
 export default class Lazyload {
   observer!: IntersectionObserver;
+  cacheImage: boolean;
   beforeLoad?: LazyloadCallback;
   afterLoad?: LazyloadCallback;
+  cache: Set<string>
 
   constructor(options?: LazyloadOptions) {
     this.beforeLoad = options?.beforeLoad;
     this.afterLoad = options?.afterLoad;
+    this.cacheImage = options?.cacheImage || false;
+    this.cache = new Set();
     this.init(options);
   }
 
@@ -56,38 +60,49 @@ export default class Lazyload {
   }
 
   private load(el: HTMLElement) {
-    const notImg = el.dataset.notImg;
     const src = el.dataset.src!!;
+    delete el.dataset.src;
+
+    if(this.cache.has(src)) {
+      this.renderImage(src, el);
+      this.afterLoad && this.afterLoad(el);
+      return;
+    }
+
     loadImage(src)
       .then(() => {
-        if (notImg) {
-          el.style.backgroundImage = `url(${src})`;
-        } else {
-          (el as HTMLImageElement).src = src;
-        }
+        this.renderImage(src, el);
         this.afterLoad && this.afterLoad(el);
+        this.cache.add(src);
       })
       .catch(() => {
         console.warn(`${src} loaded error`);
       });
-    delete el.dataset.src;
-    delete el.dataset.notImg;
   }
 
   add(el: HTMLElement, binding: VNodeDirective) {
     const imageSrc = binding?.value;
-    const isImgTag = isHTMLImageElement(el);
+
+    if(this.cacheImage && this.cache.has(imageSrc)) {
+      this.renderImage(imageSrc, el);
+      return;
+    }
+
     if (!imageSrc) {
       console.warn('v-lazyload requires a image url as a argument.');
       return;
     }
 
     this.beforeLoad && this.beforeLoad(el);
-
     el.dataset['src'] = imageSrc;
-    if (!isImgTag) {
-      el.dataset['notImg'] = '1';
-    }
     this.observer.observe(el);
+  }
+
+  private renderImage(src: string, el: HTMLElement) {
+    if (isHTMLImageElement(el)) {
+      (el as HTMLImageElement).src = src;
+    } else {
+      el.style.backgroundImage = `url(${src})`;
+    }
   }
 }

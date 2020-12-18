@@ -8,6 +8,7 @@ export interface Border {
 export interface LazyloadOptions {
   border?: Border;
   threshold?: number;
+  cacheImage?: boolean
   beforeLoad?: LazyloadCallback;
   afterLoad?: LazyloadCallback;
 }
