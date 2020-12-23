@@ -61,7 +61,7 @@ export default class Lazyload {
 
   private load(el: HTMLElement) {
     const src = el.dataset.src!!;
-    delete el.dataset.src;
+    // delete el.dataset.src;
 
     if(this.cache.has(src)) {
       this.renderImage(src, el);
@@ -90,6 +90,11 @@ export default class Lazyload {
 
     if (!imageSrc) {
       console.warn('v-lazyload requires a image url as a argument.');
+      return;
+    }
+
+    const src = el.dataset.src;
+    if(src === imageSrc) {
       return;
     }
 
