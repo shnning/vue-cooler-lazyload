@@ -1,6 +1,6 @@
 import { VNodeDirective } from 'vue';
 import { LazyloadOptions, IntersectionObserverConfig, LazyloadCallback } from './types';
-import { loadImage, isHTMLImageElement, isIntersecting } from './utils';
+import { loadImage, isHTMLImageElement, isIntersecting, warning } from './utils';
 
 export default class Lazyload {
   observer!: IntersectionObserver;
@@ -76,7 +76,7 @@ export default class Lazyload {
         this.cache.add(src);
       })
       .catch(() => {
-        console.warn(`${src} loaded error`);
+        warning(`${src} loaded error`);
       });
   }
 
@@ -89,7 +89,7 @@ export default class Lazyload {
     }
 
     if (!imageSrc) {
-      console.warn('v-lazyload requires a image url as a argument.');
+      warning('v-lazyload requires a image url as a argument.');
       return;
     }
 

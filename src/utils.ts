@@ -28,3 +28,7 @@ export const isIntersecting = (el: IntersectionObserverEntry): boolean => {
   // https://github.com/w3c/IntersectionObserver/issues/211
   return el.isIntersecting || el.intersectionRatio > 0;
 }
+
+export const warning = (error: string) => {
+  console.warn(`[v-lazyload-pulgin]: ${error}`);
+}
