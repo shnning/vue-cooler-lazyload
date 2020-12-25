@@ -5,6 +5,8 @@
 [![npm license](https://img.shields.io/npm/l/vue-cooler-lazyload?style=flat-square)](https://www.npmjs.com/package/vue-cooler-lazyload)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+[英文说明](./README.md)
+
 一个用来做图片和背景图片懒加载的vue插件。下面是一些特性：
 - 轻量，只做一件事就是曝光元素
 - 更好的性能，使用浏览器的原生api Intersectionobserver实现
@@ -56,7 +58,7 @@ if v-lazyload directive is used in div Element, image would be background-image 
 |beforeLoad|图片加载前的回调函数|null|Function(el: HTMLElement): void|
 |afterLoad|图片加载后的回调函数|null|Function(el: HTMLElement): void|
 
-## Compatibility
+## 兼容性
 该插件的兼容性取决于[IntersectionObserver的兼容性](https://caniuse.com/intersectionobserver)
 
 
