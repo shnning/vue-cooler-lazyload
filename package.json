@@ -18,7 +18,7 @@
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "dev": "rm -rf dist && concurrently \"npm start\" \"wait-on dist/index.js && webpack serve --config example/build/webpack.config.js\""
+    "dev": "rm -rf dist && concurrently \"npm start\" \"wait-on dist/vue-cooler-lazyload.cjs.development.js && webpack serve --config example/build/webpack.config.js\""
   },
   "repository": {
     "type": "git",
