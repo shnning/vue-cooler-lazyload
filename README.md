@@ -5,6 +5,8 @@
 [![npm license](https://img.shields.io/npm/l/vue-cooler-lazyload?style=flat-square)](https://www.npmjs.com/package/vue-cooler-lazyload)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+[中文说明](./README-CN.md)
+
 A vue plugin which support lazyload image and background-image. Here are the advantages:
 - Be lighterweight, just do one thing is that lazyload
 - use the browser native API Intersectionobserver, better performance
